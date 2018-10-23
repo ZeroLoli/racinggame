@@ -2,12 +2,24 @@
 using UnityEngine;
 
 public class PlayerControls : MonoBehaviour {
-    
-    public float thrustSpeed = 15000f, turnSpeed = 1000f, hoverSpeed = 10f;
-    public bool weaponized;
-    public GameObject laserBullet;
 
-    private float thrustInput, turnInput, weaponCD = 0.0f, cooldown = 0.2f;
+    [SerializeField]
+    float thrustSpeed = 1500f;
+
+    [SerializeField]
+    public float turnSpeed = 1000f;
+
+    [SerializeField]
+    float hoverSpeed = 10f;
+
+    [SerializeField]
+    bool weaponized;
+
+    [SerializeField]
+    GameObject laserBullet;
+
+    private float thrustInput, turnInput;
+    private float weaponCD = 0.0f, cooldown = 0.2f;
     private bool hover;
     private Rigidbody shipRigidBody;
 
