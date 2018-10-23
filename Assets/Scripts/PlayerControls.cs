@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour {
     
-    public float thrustSpeed = 15000f, turnSpeed = 1000f, hoverSpeed = 10f;
+    public float thrustSpeed = 6000f, turnSpeed = 1500f, hoverSpeed = 10f;
     public bool weaponized;
     public GameObject laserBullet;
 
@@ -23,15 +23,11 @@ public class PlayerControls : MonoBehaviour {
 	void Update () {
         thrustInput = Input.GetAxis("Vertical");
         turnInput = Input.GetAxis("Horizontal");
-        Shoot();  
-	}
+    }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
+        Shoot();
         Movement();
-        if (transform.position.y < 1.0f) {
-            Hover();
-        }
     }
 
     void Movement()
