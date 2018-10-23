@@ -2,20 +2,23 @@
 using UnityEngine;
 
 public class PlayerControls : MonoBehaviour {
-    
-    public float thrustSpeed = 15000f, turnSpeed = 1000f, hoverSpeed = 10f;
-    public bool weaponized;
+
+    public float thrustSpeed = 15000f;
+    public float turnSpeed = 1000f;
+    public float hoverSpeed = 10f;
+    public bool isWeaponized;
     public GameObject laserBullet;
 
-    private float thrustInput, turnInput, weaponCD = 0.0f, cooldown = 0.2f;
-    private bool hover;
-    private Rigidbody shipRigidBody;
+    private float thrustInput;
+    private float turnInput;
+    private float weaponCD = 0.0f;
+    private float cooldown = 0.2f;
+    private Rigidbody shipRigidbody;
 
     // Use this for initialization
     void Start () {
-        weaponized = true;
-        hover = false;
-        shipRigidBody = GetComponent<Rigidbody>();
+        isWeaponized = true;
+        shipRigidbody = GetComponent<Rigidbody>();
 
     }
 	
@@ -29,23 +32,20 @@ public class PlayerControls : MonoBehaviour {
     void FixedUpdate()
     {
         Movement();
-        if (transform.position.y < 1.0f) {
-            Hover();
-        }
     }
 
     void Movement()
     {
         // Turning the ship
-        shipRigidBody.AddRelativeTorque(0f, turnInput * turnSpeed, 0f);
+        shipRigidbody.AddRelativeTorque(0f, turnInput * turnSpeed, 0f);
         // Brake and gas
         if (Input.GetKey(KeyCode.Space))
         {
-            shipRigidBody.drag = 4;
+            shipRigidbody.drag = 4;
         }            
         else {
-            shipRigidBody.drag = 2;
-            shipRigidBody.AddRelativeForce(0f, 0f, thrustInput * thrustSpeed);
+            shipRigidbody.drag = 2;
+            shipRigidbody.AddRelativeForce(0f, 0f, thrustInput * thrustSpeed);
         }
     }
 
@@ -60,7 +60,7 @@ public class PlayerControls : MonoBehaviour {
 
     void Shoot()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && weaponized && weaponCD <= Time.time)
+        if (Input.GetKey(KeyCode.LeftShift) && isWeaponized && weaponCD <= Time.time)
         {
             var bul = Instantiate(laserBullet, transform.position, transform.rotation);
             bul.GetComponent<Rigidbody>().AddForce(transform.forward * 600);

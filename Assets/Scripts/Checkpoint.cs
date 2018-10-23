@@ -5,7 +5,7 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour {
 
     public int checkpointNo;
-    public bool currCP = false;
+    public bool isNextCP = false;
     private CheckpointController CPControl;
     private Light spotlight;
 
@@ -17,7 +17,7 @@ public class Checkpoint : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (currCP) {
+        if (isNextCP) {
             spotlight.color = Color.red;
             spotlight.intensity = 4 + Mathf.Sin(Time.time * 2);
         }
@@ -28,11 +28,11 @@ public class Checkpoint : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (currCP && (other.name == "Player")) {
+        if (isNextCP && (other.name == "Player")) {
             CPControl.CPIncrease();
             spotlight.intensity = 8.0f;
             spotlight.color = Color.green;
-            currCP = false;
+            isNextCP = false;
         }
     }
 }
