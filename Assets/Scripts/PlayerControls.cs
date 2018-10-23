@@ -43,6 +43,9 @@ public class PlayerControls : MonoBehaviour {
             shipRigidBody.drag = 2;
             shipRigidBody.AddRelativeForce(0f, 0f, thrustInput * thrustSpeed);
         }
+        // Rotate back to 0 on Z-axis
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, 0), Time.deltaTime * 2.0f);
+
     }
 
     void Hover() {
