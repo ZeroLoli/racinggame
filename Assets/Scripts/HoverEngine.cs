@@ -16,7 +16,6 @@ public class HoverEngine : MonoBehaviour {
 	void FixedUpdate () {
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
-        Debug.Log("fuck ass");
         if (Physics.Raycast(ray, out hit, hoverHeight))
         {
             float proportionalHeight = (hoverHeight - hit.distance) / hoverHeight;

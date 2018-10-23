@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour {
+public class PlayerBullet : MonoBehaviour {
 
     private float lifetime = 1.0f, spawnTime;
 
@@ -19,8 +19,7 @@ public class BulletScript : MonoBehaviour {
 	}
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("HIT!");
         // other.gameObject.hp -= 1;
-        if (other.name != "Player") Destroy(gameObject);
+        //if (other.tag != "Player") Destroy(gameObject);
     }
 }

@@ -49,11 +49,6 @@ public class PlayerControls : MonoBehaviour {
         }
     }
 
-    void CollMovement()
-    {
-
-    }
-
     void Hover() {
         //GetComponent<Rigidbody>().AddForce(Vector3.up * hoverSpeed / transform.position.y, ForceMode.Acceleration);
     }
