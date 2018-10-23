@@ -37,6 +37,10 @@ GameObject:
   - component: {fileID: 4657597168214750}
   - component: {fileID: 33256177009335032}
   - component: {fileID: 23540796531157246}
+  - component: {fileID: 64215784377879128}
+  - component: {fileID: 136684584721396956}
+  - component: {fileID: 136855695657553212}
+  - component: {fileID: 65559149533053426}
   m_Layer: 0
   m_Name: gate
   m_TagString: Untagged
@@ -70,7 +74,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1692630057660560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.39, y: 0, z: 10.1}
+  m_LocalPosition: {x: -5.39, y: 0, z: -82.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4812404225963848}
@@ -192,6 +196,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1692630057660560}
   m_Mesh: {fileID: 4300000, guid: 29053177cc2f88c4d93fe191858e8c9a, type: 3}
+--- !u!64 &64215784377879128
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1629489984864470}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 83a11b6cfca586b4f81b914f50ac827a, type: 3}
+--- !u!65 &65559149533053426
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1629489984864470}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11, y: 2.3, z: 1}
+  m_Center: {x: 0, y: 6.7, z: 0}
 --- !u!65 &65619601812874126
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -202,8 +232,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 5.5, z: 11}
-  m_Center: {x: 0, y: 2.5, z: 0}
+  m_Size: {x: 11, y: 5.5, z: 0.2}
+  m_Center: {x: 0, y: 2.7, z: 0}
 --- !u!108 &108379247204338796
 Light:
   m_ObjectHideFlags: 1
@@ -219,10 +249,10 @@ Light:
   m_SpotAngle: 114
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.236
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -233,7 +263,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -249,8 +279,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 1692630057660560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 306b33c6735152a419962ab212081044, type: 3}
+  m_Script: {fileID: 11500000, guid: db17036058bcc4f4fbf3d376b1abc4b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   checkpointNo: 0
-  currCP: 0
+  isNextCP: 0
+--- !u!136 &136684584721396956
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1629489984864470}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 6
+  m_Direction: 1
+  m_Center: {x: -6, y: 2.5, z: 0}
+--- !u!136 &136855695657553212
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1629489984864470}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 6
+  m_Direction: 1
+  m_Center: {x: 6, y: 2.5, z: 0}
