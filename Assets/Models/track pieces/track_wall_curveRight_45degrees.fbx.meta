@@ -9,6 +9,7 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Cube.007
+    4300002: track_wall_curveRight_45degrees
   externalObjects:
   - first:
       type: UnityEngine:Material
