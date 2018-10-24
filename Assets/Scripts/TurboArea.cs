@@ -22,7 +22,7 @@ public class TurboArea : MonoBehaviour {
     void FixedUpdate () {
         if (isBoosting && Time.time - lastTurboAt <= turboDur)
         {
-            player.GetComponent<Rigidbody>().AddForce(Vector3.forward * turboAmount);
+            player.GetComponent<Rigidbody>().AddForce(transform.forward * turboAmount);
         }
         else
         {
