@@ -4,12 +4,22 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour {
 
     // Public vars for movement
-    public float thrustSpeed = 6000f;
-    public float turnSpeed = 1500f;
+    [SerializeField]
+    float thrustSpeed = 6000f;
+    [SerializeField]
+    float turnSpeed = 1500f;
     // Public vars for shooting
-    public bool weaponized;
-    public float weaponCooldownDur = 0.2f;
-    public GameObject laserBullet;
+    [SerializeField]
+    bool weaponized;
+    [SerializeField]
+    float weaponCooldownDur = 0.2f;
+    [SerializeField]
+    GameObject laserBullet;
+
+    [SerializeField]
+    GameObject[] trailObjects;
+    [SerializeField]
+    float minimumSpeedForTrails = 2.5f;
 
     // Private vars for movement
     private Rigidbody shipRigidBody;
@@ -26,6 +36,8 @@ public class PlayerControls : MonoBehaviour {
         weaponShotTime = 0.0f;
         hitPoints = 10.0f;
         shipRigidBody = GetComponent<Rigidbody>();
+
+
     }
 	
 	// Update is called once per frame
@@ -65,6 +77,12 @@ public class PlayerControls : MonoBehaviour {
             shipRigidBody.AddRelativeForce(0f, 0f, thrustInput * thrustSpeed);
         }*/
 
+        // Check current speed. If speed is high, enable trail effect.
+        if (shipRigidBody.velocity.magnitude > minimumSpeedForTrails)
+            SetTrailsEnabled(true);
+        else
+            SetTrailsEnabled(false);
+
         // Rotate back to 0 on Z-axis
         transform.rotation = Quaternion.Slerp(transform.rotation,
             Quaternion.Euler(0.0f,
@@ -79,6 +97,19 @@ public class PlayerControls : MonoBehaviour {
             var bul = Instantiate(laserBullet, transform.position + transform.forward, transform.rotation);
             bul.GetComponent<Rigidbody>().AddForce(transform.forward * 2000);
             weaponShotTime = Time.time + weaponCooldownDur;
+        }
+    }
+
+    void SetTrailsEnabled(bool areTrailsEnabled)
+    {
+        for ( int i = 0; i < trailObjects.Length; i++)
+        {
+            TrailRenderer trail = trailObjects[i].GetComponent<TrailRenderer>();
+            if (trail != null)
+            {
+                trail.emitting = areTrailsEnabled;
+            }
+
         }
     }
 }
