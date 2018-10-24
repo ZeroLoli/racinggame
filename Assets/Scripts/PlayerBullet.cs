@@ -20,6 +20,6 @@ public class PlayerBullet : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         // other.gameObject.hp -= 1;
-        //if (other.tag != "Player") Destroy(gameObject);
+        if (!(other.tag == "Player" | other.tag == "BulletPassthru")) Destroy(gameObject);
     }
 }
