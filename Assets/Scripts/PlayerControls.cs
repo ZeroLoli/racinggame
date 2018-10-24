@@ -8,6 +8,7 @@ public class PlayerControls : MonoBehaviour {
     float thrustSpeed = 6000f;
     [SerializeField]
     float turnSpeed = 1500f;
+    public bool isBoosted;
     // Public vars for shooting
     [SerializeField]
     bool weaponized;
@@ -110,6 +111,13 @@ public class PlayerControls : MonoBehaviour {
                 trail.emitting = areTrailsEnabled;
             }
 
+        }
+    }
+
+    public void TurboBoost() {
+        if (!isBoosted) {
+            thrustSpeed = 10000;
+            isBoosted = !isBoosted;
         }
     }
 }
