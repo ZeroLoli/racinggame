@@ -10,15 +10,17 @@ public class CheckpointController : MonoBehaviour {
     private List<float> lapTimes = new List<float>();
     private Checkpoint activeCP;
 
-    public bool gameOver = false;
-    public Text CPInfoText, LapTimeText;
+    public bool isGameActive;
+    public Text CPInfoText, LapTimeText, RaceOverText;
     public int lapsInRace;
 
     // Use this for initialization
     void Start() {
+        isGameActive = true;
         lapStartTime = Time.time;
         nextCPNo = 0;
         lapCount = 0;
+        RaceOverText.text = "";
         // Initialize the checkpoints
         CPCount = this.transform.childCount;
         for (int i = 0; i < CPCount; i++) {
@@ -31,11 +33,17 @@ public class CheckpointController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        float minutes = Mathf.Floor((Time.time - lapStartTime) / 60);
-        float seconds = Mathf.Floor((Time.time - lapStartTime) % 60);
-        float msecs = Mathf.Floor(((Time.time - lapStartTime) * 100) % 100);
-        LapTimeText.text = (minutes.ToString() + ":" + seconds.ToString("00") + ":" + msecs.ToString("00"));
-        CPInfoText.text = ("CHECKPOINT " + nextCPNo + " / " + CPCount + "\nLAP " + (lapCount + 1) + " / " + lapsInRace);
+        if (isGameActive)
+        {
+            LapTimeText.text = TimeParser(Time.time - lapStartTime);
+            CPInfoText.text = ("CHECKPOINT " + nextCPNo + " / " + CPCount + "\nLAP " + (lapCount + 1) + " / " + lapsInRace);
+        }
+        else
+        {
+            LapTimeText.text = "";
+            CPInfoText.text = "";
+            RaceOverText.color = Color.HSVToRGB(Mathf.Abs(Mathf.Sin(Time.time)), 1, 1);
+        }
     }
 
     public void CPIncrease() {
@@ -59,9 +67,30 @@ public class CheckpointController : MonoBehaviour {
                 activeCP = transform.GetChild(nextCPNo).GetComponent<Checkpoint>();
                 activeCP.isNextCP = true;
             }
+            // If final lap, end the game and display race information
             else {
-                gameOver = true;
+                isGameActive = false;
+                float raceTotalTime = 0.0f;
+                float fastestLapTime = 99999f;
+                for (int i = 0; i < lapsInRace; i++) {
+                    Debug.Log("Laptimes: " + lapTimes[i]);
+                    if (lapTimes[i] < fastestLapTime)
+                    {
+                        fastestLapTime = lapTimes[i];
+                    }
+                    raceTotalTime += lapTimes[i];
+                }
+
+                RaceOverText.text = "RACE COMPLETE!\n\nTotal Time:" + TimeParser(raceTotalTime) + "\nBest Lap: " + TimeParser(fastestLapTime);
             }
         }
+    }
+
+    private string TimeParser(float time)
+    {
+        float minutes = Mathf.Floor((time) / 60);
+        float seconds = Mathf.Floor((time) % 60);
+        float msecs = Mathf.Floor(((time) * 100) % 100);
+        return (minutes.ToString() + ":" + seconds.ToString("00") + ":" + msecs.ToString("00"));
     }
 }

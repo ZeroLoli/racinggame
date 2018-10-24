@@ -310,7 +310,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 42657150}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0118296, y: 5.1832304, z: 0.0047721863}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -378,8 +378,8 @@ MonoBehaviour:
   playerShip: {fileID: 1663763597}
   sparkBullet: {fileID: 1204942116397636, guid: 815dce656f7105341b3fc50ebafedf71,
     type: 2}
-  minYAngle: 0
-  maxYAngle: 0
+  minAimAngle: 0
+  maxAimAngle: 40
   cooldownTime: 1
   bulletVelocity: 10
 --- !u!1 &144361807
@@ -2593,9 +2593,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '0:00:00
-
-    Time.time - lapStart'
+  m_Text: 0:00:00
 --- !u!222 &824682622
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3402,6 +3400,86 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1090544464}
   m_Mesh: {fileID: 4300004, guid: 0483402735c1f7b40be221f2ba2ab518, type: 3}
+--- !u!1 &1110627598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1110627599}
+  - component: {fileID: 1110627601}
+  - component: {fileID: 1110627600}
+  m_Layer: 5
+  m_Name: RaceOverText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1110627599
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110627598}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2145208921}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -120.25}
+  m_SizeDelta: {x: 480, y: 397.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1110627600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110627598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 48
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 64
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'RACE COMPLETE!
+
+
+    TOTAL TIME: 0:00:00
+
+    BEST LAP: 0:00:00'
+--- !u!222 &1110627601
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110627598}
+  m_CullTransparentMesh: 0
 --- !u!1 &1111248556
 GameObject:
   m_ObjectHideFlags: 0
@@ -4768,10 +4846,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be85d1a1263c82244b7d699fc0610581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOver: 0
+  isGameActive: 0
   CPInfoText: {fileID: 362063838}
   LapTimeText: {fileID: 824682621}
-  lapsInRace: 3
+  RaceOverText: {fileID: 1110627600}
+  lapsInRace: 2
 --- !u!1 &1774262890
 GameObject:
   m_ObjectHideFlags: 0
@@ -5767,6 +5846,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 54841872494011532, guid: 751d07d55b1f27047a6076d9ed01e4f4,
+        type: 2}
+      propertyPath: m_Drag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 54841872494011532, guid: 751d07d55b1f27047a6076d9ed01e4f4,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 751d07d55b1f27047a6076d9ed01e4f4, type: 2}
   m_IsPrefabAsset: 0
@@ -5815,8 +5904,8 @@ MonoBehaviour:
   playerShip: {fileID: 1663763597}
   sparkBullet: {fileID: 1204942116397636, guid: 815dce656f7105341b3fc50ebafedf71,
     type: 2}
-  minYAngle: 0
-  maxYAngle: 0
+  minAimAngle: 0
+  maxAimAngle: 0
   cooldownTime: 0.5
   bulletVelocity: 0
 --- !u!1001 &2104386500
@@ -6047,6 +6136,7 @@ RectTransform:
   m_Children:
   - {fileID: 362063837}
   - {fileID: 824682620}
+  - {fileID: 1110627599}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
